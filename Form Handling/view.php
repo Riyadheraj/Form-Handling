@@ -16,12 +16,14 @@
     <div class="container">
         <div class="row">
             <div class="col-8 mx-auto">
-                <table class= "table" border= "2">
+              <button class="btn btn-danger"><a href= "form.php" style = "color:white; text-decoration:none;" >Add User</a></button>
+                <table class="table-bordered table-striped table-hover mt-3 table" border= "2">
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Password</th>
+                        <th>Action</th>
 
                 <?php
                 include "connection.php";
@@ -30,12 +32,35 @@
                 foreach($query as $value){
                  ?>
                 
-                    <tr>
-                        <td><?php echo $value['Id'];?></td>
-                        <td><?php echo $value['Name'];?></td>
-                        <td><?php echo $value['Email'];?></td>
-                        <td><?php echo $value['Password'];?></td>
-                    </tr>   
+        <tr>
+         <td><?php echo $value['Id'];?></td>
+        <td><?php echo $value['Name'];?></td>
+         <td><?php echo $value['Email'];?></td>
+         <td><?php echo $value['Password'];?></td>
+         <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#update<?php echo $value['Id'];?>"> Update</button></td>
+          </tr>   
+                    <!-- Modal -->
+ <div class="modal fade" id="update<?php echo $value['Id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="code.php" method="POST"></form>
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update User Data</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control mt-3" name= "id" value= "<?php echo $value['Id'];?>">
+        <input type="text" class="form-control mt-3" name= "name" value= "<?php echo $value['Name'];?>">
+        <input type="email" class="form-control mt-3" name= "email" value= "<?php echo $value['Email'];?>">
+        <input type="text" class="form-control mt-3" name= "pass" value= "<?php echo $value['Password'];?>">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-warning">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
                     <?php
 
                }

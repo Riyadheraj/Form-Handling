@@ -1,7 +1,7 @@
 <?php
 include "connection.php";
 
-
+// Registration Form
 if(isset($_POST['submit'])){
     $name = $_POST['uname'];
     $email = $_POST['uemail'];
@@ -25,9 +25,34 @@ else{
         echo "<script>
         alert('Data Inserted Successfully');
         location.assign('form.php');
-        </script>";
+        </script>"; 
     }
 }
 }
+
+
+// Login Form
+
+if(isset($_POST['login'])){
+    $email = $_POST['uemail'];
+    $pass = $_POST['upass'];
+
+    $query = mysqli_query($con, "SELECT * FROM registration_form WHERE Email = '$email' AND Password = '$pass'");
+
+    if (mysqli_num_rows($query) ==1){
+        echo "<script>
+        alert('Login Successfully');
+        location.assign('Welcome.php');
+        </script>";
+    }
+    else{
+        echo "<script>
+        alert('Email id or password is incorrect');
+        location.assign('login.php');
+        </script>";
+
+    }
+    }
+
 
 ?>

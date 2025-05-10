@@ -11,21 +11,20 @@
     <title>Form</title>
   </head>
   <body>
-    <h1 class="text-center mt-3">Registration Form</h1>
+    <h1 class="text-center mt-3">Login Form</h1>
 
     <div class="container">
       <div class="row">
         <div class="col-8 mx-auto">
-        <h6>Already have an account?<a href="login.php">Login</a></h6>
+            <h6>Create an account?<a href="form.php">Register</a></h6>
           <form action="code.php" method="post">
-            <input type="text" placeholder="Enter Your Name" class="form-control mt-3" name="uname">
+           
             <input type="email" placeholder="Enter Your Email" class="form-control mt-3" name="uemail">
             <input type="password" placeholder="Enter Your Password" class="form-control mt-3" name="upass">
 
-            <button type="submit" class="btn btn-success mt-3" name="submit">Submit</button>
-            <button type="view" class="btn btn-success mt-3" name="view"><a  style="color:white; text-decoration:none" href="view.php"  >View</a></button>
+            <button type="submit" class="btn btn-success mt-3" name="login">Login</button>
+            
           </form>
-        </div>
       </div>
     </div>
 
