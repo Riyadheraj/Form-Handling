@@ -54,5 +54,24 @@ if(isset($_POST['login'])){
     }
     }
 
+// Update data
+
+if(isset($_POST['update'])){
+    $id = $_POST ['id'];
+    $name = $_POST ['name'];
+    $email = $_POST ['email'];
+    $pass = $_POST ['pass'];
+
+    $query = mysqli_query($con, "UPDATE registration_form SET Name = '$name', Email = '$email', Password = '$pass' WHERE Id = '$id' ");
+
+      if($query){
+        echo "<script>
+        alert('Data Updated Successfully');
+        location.assign('view.php');
+        </script>"; 
+    }
+    
+}
+
 
 ?>
