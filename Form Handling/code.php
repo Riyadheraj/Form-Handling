@@ -70,7 +70,21 @@ if(isset($_POST['update'])){
         location.assign('view.php');
         </script>"; 
     }
+                                                             
+// Delete Data
+if(isset($_POST['delete'])){
+    $id = $_POST['id'];
+
+    $query = mysqli_query($con, "DELETE FROM registration_form WHERE Id = '$id'");
+
+    if($query){
+        echo "<script>
+        alert('Data Deleted Successfully');
+        location.assign('view.php');
+        </script>"; 
+    }
     
+}
 }
 
 
