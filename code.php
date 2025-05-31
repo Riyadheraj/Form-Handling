@@ -133,5 +133,11 @@ if(isset($_POST['add_cat'])){
     }
 }
 
+// Add Products
+
+
+
+
+
 
 ?>
