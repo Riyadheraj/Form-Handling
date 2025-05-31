@@ -48,7 +48,7 @@ if(isset($_POST['login'])){
         // echo $data ['role'];
 
         if($data['Status'] == 'verified'){
-            if($data['Role'] == 'admin'){
+            if($data['Role'] == 'admin'){ 
 
                 // create session
                 $_SESSION['admin'] = $data ['Name'];
@@ -133,7 +133,57 @@ if(isset($_POST['add_cat'])){
     }
 }
 
-// Add Products
+// Add Product
+
+if(isset($_POST['add_product'])){
+    $pname = $_POST['p_name'];
+    $pdescript = $_POST['p_descript'];
+    $pqty = $_POST['p_qty'];
+    $pprice = $_POST['p_price'];
+    $cat_id = $_POST['cat_id'];
+
+    $imgname = $_FILES['p_image']['name'];
+    $imgsize = $_FILES['p_image']['size'];
+    $tmp_name = $_FILES['p_image']['tmp_name'];
+    $imgtype = pathinfo($imgname, PATHINFO_EXTENSION);
+    $destination = "./image/" . $imgname;
+
+    if($imgsize <= 2000000){
+        if($imgtype == 'png' || $imgtype == 'jpg' || $imgtype == 'jpeg'){
+            if(move_uploaded_file($tmp_name, $destination)){
+                $query = mysqli_query($con, "INSERT INTO add_product(p_name, p_description, p_qty, p_price, cat_id, p_image)VALUES('$pname', '$pdescript', '$pqty', '$pprice', '$cat_id', '$imgname')");
+    
+    if($query){
+        echo "<script>
+        alert('Product Inserted Successfully');
+          location.assign('admin_panel/public.php?add_product');
+      
+        </script>"; 
+    }               
+    }
+    // else{
+    //             echo "<script>
+    //     alert('Product Inserted Not Successfully');
+    //     location.assign('admin_panel/public.php?add_product');
+    //     </script>";
+    // }
+
+        }
+        else{
+        echo "<script>
+        alert('Only allow png , jpg, or jpeg images');
+        location.assign('admin_panel/public.php?add_product');
+        </script>"; 
+        }
+
+    }
+    else{
+        "<script>
+        alert('Image size should be less than or equal to 2MB');
+        location.assign('admin_panel/public.php?add_product');
+        </script>"; 
+    }
+}
 
 
 

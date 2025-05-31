@@ -1,3 +1,6 @@
+<?php
+include "../connection.php";
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -19,18 +22,65 @@
         
           <form action="../code.php" method="post" enctype="multipart/form-data">
             <input type="text" placeholder="Enter Product Name" name="p_name" class="form-control mt-3">
-            <input type="text" placeholder="Enter Product Description" name="p_desc" class="form-control mt-3">
+            <input type="text" placeholder="Enter Product Description" name="p_descript" class="form-control mt-3">
             <input type="number" placeholder="Enter Product Quantity" name="p_qty" class="form-control mt-3">
             <input type="text" placeholder="Enter Product Price" name= "p_price" class="form-control mt-3">
 
-            <select name="p_category" id="" class="form-control mt-3">
+            <select name="cat_id" id="" class="form-control mt-3">
             <option value="">Select Category</option>
+
+          <?php
+          $query = mysqli_query($con, "SELECT * FROM add_category");
+
+          foreach($query as $value){
+            
+         ?>
+
+         <option value="<?php echo $value['cat_id']?>"><?php echo $value ['cat_name'] ?></option>
+
+         <?php
+          }
+         ?>
 
             </select>
             <input type="file" name="p_image" class="form-control mt-3">
             <button type="submit" class="btn btn-success mt-3" name="add_product">Add Product</button>
           
           </form>
+
+                    <h1 class="text-center mt-3">View Product</h1>
+          <table class="table-bordered table-striped table-hover mt-3 table" border="2">
+          <tr>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Product Description</th>
+            <th>Product Quantity</th>
+            <th>Product Price</th>
+            <th>Product Image</th>
+          
+          </tr>
+          
+          <?php
+          include "../connection.php";
+          $myquery = mysqli_query($con, "SELECT * FROM add_product");
+          foreach($myquery as $value){
+          ?>
+          
+            <tr>
+              <td><?php echo $value['p_id']?></td>
+              <td><?php echo $value['p_name']?></td>
+              <td><?php echo $value['p_description']?></td>
+              <td><?php echo $value['p_qty']?></td>
+              <td><?php echo $value['p_price']?></td>
+              <td><img src="../image/<?php echo $value['p_image']?>" alt="" width="50"></td>
+
+            </tr>       
+            <?php
+            }
+            ?>
+
+            
+          </table>
         </div>
       </div>
     </div>
