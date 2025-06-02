@@ -72,7 +72,7 @@ include "../connection.php";
               <td><?php echo $value['p_description']?></td>
               <td><?php echo $value['p_qty']?></td>
               <td><?php echo $value['p_price']?></td>
-              <td><img src="../image/<?php echo $value['p_image']?>" alt="" width="50"></td>
+              <td><img src="../image/<?php echo $value['p_image']?>" alt="" width="150"></td>
 
             </tr>       
             <?php
