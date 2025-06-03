@@ -60,9 +60,11 @@ if(isset($_POST['login'])){
        }
 
         else{
+              // create session
+                $_SESSION['user_id'] = $data ['Id'];
         echo "<script>
         alert('Login Successfully');
-        location.assign('welcome.php');
+        location.assign('index.php');
         </script>";
             }
         }

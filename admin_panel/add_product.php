@@ -57,6 +57,8 @@ include "../connection.php";
             <th>Product Quantity</th>
             <th>Product Price</th>
             <th>Product Image</th>
+            <th colspen="2" class="text-center">Action</th>
+            
           
           </tr>
           
@@ -73,6 +75,9 @@ include "../connection.php";
               <td><?php echo $value['p_qty']?></td>
               <td><?php echo $value['p_price']?></td>
               <td><img src="../image/<?php echo $value['p_image']?>" alt="" width="150"></td>
+              <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#update<?php echo $value['p_id'];?>"> Update</button></td>
+
+                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?php echo $value['p_id'];?>">Delete</button>
 
             </tr>       
             <?php

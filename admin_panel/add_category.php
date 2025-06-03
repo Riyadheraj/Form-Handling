@@ -24,6 +24,7 @@
           <tr>
             <th>Category Id</th>
             <th>Category Name</th>
+            <th colspan="2" class="text-center" >Action</th>
             
           
           </tr>
@@ -37,6 +38,10 @@
             <tr>
               <td><?php echo $value['cat_id']?></td>
               <td><?php echo $value['cat_name']?></td>
+               <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#update<?php echo $value['cat_id'];?>"> Update</button></td>
+
+     <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?php echo $value['cat_id'];?>">Delete</button>
+    </td>
             </tr>       
             <?php
             }
