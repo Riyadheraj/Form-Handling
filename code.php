@@ -118,7 +118,26 @@ if(isset($_POST['delete'])){
     }
     
 }
+
+// Update Categories Data
+
+if(isset($_POST['cat_update'])){
+    $id = $_POST ['catid'];
+    $name = $_POST ['catname'];
+    
+    $query = mysqli_query($con, "UPDATE add_category SET cat_name = '$name' WHERE cat_id = '$id'");
+
+      if($query){
+        echo "<script>
+        alert('Categories Updated Successfully');
+        location.assign('admin_panel/public.php?add_category');
+        </script>"; 
+    }
+
+
 }
+
+
 
 // Add Categories
 
@@ -186,10 +205,5 @@ if(isset($_POST['add_product'])){
         </script>"; 
     }
 }
-
-
-
-
-
-
+}
 ?>

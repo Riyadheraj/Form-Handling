@@ -57,7 +57,7 @@ include "../connection.php";
             <th>Product Quantity</th>
             <th>Product Price</th>
             <th>Product Image</th>
-            <th colspen="2" class="text-center">Action</th>
+            <th colspan="2" class="text-center">Action</th>
             
           
           </tr>
