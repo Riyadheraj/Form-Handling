@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include "connection.php";
 
 // Registration Form
@@ -62,6 +62,7 @@ if(isset($_POST['login'])){
         else{
               // create session
                 $_SESSION['user_id'] = $data ['Id'];
+                $_SESSION['user_name'] = $data ['Name'];
         echo "<script>
         alert('Login Successfully');
         location.assign('index.php');

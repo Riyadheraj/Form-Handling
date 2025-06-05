@@ -1,4 +1,5 @@
 <?php
+// session_start();
 include "code.php";
 ?>
 <!DOCTYPE html>
@@ -64,8 +65,9 @@ include "code.php";
 						}
 
 						else{
+							
+							echo "My Account";
 							?>
-						My Account
 						</a>
 						<?php
 						}
