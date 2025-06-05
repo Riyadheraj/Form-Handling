@@ -103,7 +103,8 @@ if(isset($_POST['update'])){
         location.assign('view.php');
         </script>"; 
     }
-                                                             
+    
+}
 // Delete Data
 if(isset($_POST['delete'])){
     $id = $_POST['id'];
@@ -143,15 +144,49 @@ if(isset($_POST['cat_update'])){
 
 if(isset($_POST['add_cat'])){
     $cat_name = $_POST['cat_name'];
-    
-    $query = mysqli_query($con, "INSERT INTO add_category(cat_name)VALUES('$cat_name')");
+    $imgname = $_FILES['cat_image']['name'];
+    $imgsize = $_FILES['cat_image']['size'];
+    $tmp_name = $_FILES['cat_image']['tmp_name'];
+    $imgtype = pathinfo($imgname, PATHINFO_EXTENSION);
+    $destination = "./image/".$imgname;
+
+    if($imgsize <= 10000000){
+        if($imgtype == 'png' || $imgtype == 'jpg' || $imgtype == 'jpeg'){
+            if(move_uploaded_file($tmp_name, $destination)){
+ $query = mysqli_query($con, "INSERT INTO add_category(cat_name,cat_image)VALUES('$cat_name' $cat)");
     
     if($query){
         echo "<script>
-        alert('Data Inserted Successfully');
-        location.assign('admin_panel/public.php?add_category');
+       location.assign('admin_panel/public.php?add_category');
+         alert('Data Inserted Successfully');
+        </script>"; 
+    } 
+                  
+    }
+    else{
+                echo "<script>
+        alert('Product Inserted Not Successfully');
+       
+        </script>";
+    }
+
+        }
+        else{
+        echo "<script>
+        alert('Only allow png , jpg, or jpeg images');
+        location.assign('admin_panel/public.php?add_product');
+        </script>"; 
+        }
+
+    }
+    else{
+      echo  "<script>
+        alert('Image size should be less than or equal to 2MB');
+        location.assign('admin_panel/public.php?add_product');
         </script>"; 
     }
+    
+   
 }
 
 // Add Product
@@ -167,9 +202,9 @@ if(isset($_POST['add_product'])){
     $imgsize = $_FILES['p_image']['size'];
     $tmp_name = $_FILES['p_image']['tmp_name'];
     $imgtype = pathinfo($imgname, PATHINFO_EXTENSION);
-    $destination = "./image/" . $imgname;
+    $destination = "./image/".$imgname;
 
-    if($imgsize <= 2000000){
+    if($imgsize <= 10000000){
         if($imgtype == 'png' || $imgtype == 'jpg' || $imgtype == 'jpeg'){
             if(move_uploaded_file($tmp_name, $destination)){
                 $query = mysqli_query($con, "INSERT INTO add_product(p_name, p_description, p_qty, p_price, cat_id, p_image)VALUES('$pname', '$pdescript', '$pqty', '$pprice', '$cat_id', '$imgname')");
@@ -178,16 +213,15 @@ if(isset($_POST['add_product'])){
         echo "<script>
         alert('Product Inserted Successfully');
           location.assign('admin_panel/public.php?add_product');
-      
         </script>"; 
     }               
     }
-    // else{
-    //             echo "<script>
-    //     alert('Product Inserted Not Successfully');
-    //     location.assign('admin_panel/public.php?add_product');
-    //     </script>";
-    // }
+    else{
+                echo "<script>
+        alert('Product Inserted Not Successfully');
+       
+        </script>";
+    }
 
         }
         else{
@@ -199,11 +233,11 @@ if(isset($_POST['add_product'])){
 
     }
     else{
-        "<script>
+      echo  "<script>
         alert('Image size should be less than or equal to 2MB');
         location.assign('admin_panel/public.php?add_product');
         </script>"; 
     }
 }
-}
+
 ?>
