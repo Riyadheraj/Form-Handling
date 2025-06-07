@@ -75,11 +75,66 @@ include "../connection.php";
               <td><?php echo $value['p_qty']?></td>
               <td><?php echo $value['p_price']?></td>
               <td><img src="../image/<?php echo $value['p_image']?>" alt="" width="100" height="100"></td>
-              <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#update<?php echo $value['p_id'];?>"> Update</button></td>
 
-                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delete<?php echo $value['p_id'];?>">Delete</button>
+              <!-- button trigger model(update) -->
+              <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#p_update<?php echo $value['p_id'];?>"> Update</button></td>
 
-            </tr>       
+
+               <!-- button trigger model(delete) -->
+                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#p_delete<?php echo $value['p_id'];?>">Delete</button>
+              </tr>
+
+      <!-- Start Update Modal -->
+ <div class="modal fade" id="p_update<?php echo $value['p_id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="../code.php" method="POST">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Products</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control mt-3" name= "p_id" value= "<?php echo $value['p_id'];?>">
+        <input type="text" class="form-control mt-3" name= "p_name" value= "<?php echo $value['p_name'];?>">
+        <input type="text" class="form-control mt-3" name= "p_descript" value= "<?php echo $value['p_description'];?>">
+        <input type="text" class="form-control mt-3" name= "p_qty" value= "<?php echo $value['p_qty'];?>">
+        <input type="text" class="form-control mt-3" name= "p_price" value= "<?php echo $value['p_price'];?>">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-warning" name="p-update">Update</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- End Update Modal -->
+
+
+
+<!-- Start Delete Modal -->
+<div class="modal fade" id="p_delete<?php echo $value['p_id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="../code.php" method="POST">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input class="form-control mt-3" type="hidden" name="p_id" value="<?php echo $value['p_id']; ?>">
+          Do you really want to delete this?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-danger" name="p-delete">Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End Delete Modal -->       
             <?php
             }
             ?>

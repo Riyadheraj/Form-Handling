@@ -37,15 +37,19 @@ foreach($myquery as $value){
 <tr>
 <td><?php echo $value['cat_id']?></td>
 <td><?php echo $value['cat_name']?></td>
- <td><img src="../image/<?php echo $value['cat_image']?>" alt="" width="100" height="100"></td>
-<td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#catupdate<?php echo $value['cat_id'];?>"> Update</button></td>
+ <td><img src="../image/<?php echo $value['cat_image']?>" alt="" width="70" height="70"></td>
 
-<td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#catDelete<?php echo $value['cat_id'];?>">Delete</button>
+ <!-- button trigger modal(update) -->
+
+<td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cat_update<?php echo $value['cat_id'];?>"> Update</button></td>
+
+ <!-- button trigger modal(delete) -->
+<td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cat_delete<?php echo $value['cat_id'];?>">Delete</button>
 </td>
 </tr>
 
 <!-- Start Update Modal -->
- <div class="modal fade" id="catupdate<?php echo $value['cat_id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal fade" id="cat_update<?php echo $value['cat_id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <form action="../code.php" method="POST">
@@ -54,12 +58,12 @@ foreach($myquery as $value){
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <input type="hidden" class="form-control mt-3" name= "catid" value= "<?php echo $value['cat_id'];?>">
-        <input type="text" class="form-control mt-3" name= "catname" value= "<?php echo $value['cat_name'];?>">
+        <input type="hidden" class="form-control mt-3" name= "cat_id" value= "<?php echo $value['cat_id'];?>">
+        <input type="text" class="form-control mt-3" name= "cat_name" value= "<?php echo $value['cat_name'];?>">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-warning" name="cat_update">Update</button>
+        <button type="submit" class="btn btn-warning" name="cat-update">Update</button>
       </div>
       </form>
     </div>
@@ -71,21 +75,21 @@ foreach($myquery as $value){
 
 
 <!-- Start Delete Modal -->
-<div class="modal fade" id="catDelete<?php echo $value['Id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="cat_delete<?php echo $value['cat_id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="code.php" method="POST">
+      <form action="../code.php" method="POST">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Delete Data</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <input type="hidden" name="id" value="<?php echo $value['Id']; ?>">
+          <input class="form-control mt-3" type="hidden" name="cat_id" value="<?php echo $value['cat_id']; ?>">
           Do you really want to delete this?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-danger" name="delete">Delete</button>
+          <button type="submit" class="btn btn-danger" name="cat-delete">Delete</button>
         </div>
       </form>
     </div>
