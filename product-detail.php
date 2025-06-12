@@ -115,6 +115,9 @@ include "header.php";
 
 		$data = mysqli_fetch_assoc($fetctproduct);
 		?>
+
+		<form action="code.php" method="POST">
+			<input type="hidden" name="p_id" value="<?php echo $_GET['id']; ?>">
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
 		<div class="container">
 			<div class="row">
@@ -203,17 +206,34 @@ include "header.php";
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
 
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+										<input type="hidden" name="product_price" value="<?php echo $data['p_price']; ?>">
+
+										<input class="mtext-104 cl3 txt-center num-product" type="number" name="product_qty" value="1">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
 									</div>
 
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<?php
+									if(isset($_SESSION['user_id'])){
+									?>
+
+									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" name="add_to_cart">
 										Add to cart
 									</button>
+									<?php
+									}
+									else{
+										?>
+										<a href="login.php" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+											Add to cart
+									</a>
+									<?php
+									}
+									?>
 								</div>
+
 							</div>	
 						</div>
 
@@ -426,6 +446,7 @@ include "header.php";
 			</span>
 		</div>
 	</section>
+	</form>
 	<?php
 	}
 	?>
