@@ -181,7 +181,7 @@ if(isset($_POST['add_product'])){
     $imgtype = pathinfo($imgname, PATHINFO_EXTENSION);
     $destination = "./image/".$imgname;
 
-    if($imgsize <= 2000000){ // 2MB limit
+    if($imgsize <= 10000000){ // 2MB limit
         if(in_array($imgtype, ['png', 'jpg', 'jpeg'])){
             if(move_uploaded_file($tmp_name, $destination)){
                 $query = mysqli_query($con, "INSERT INTO add_product(p_name, p_description, p_qty, p_price, cat_id, p_image) VALUES('$pname', '$pdescript', '$pqty', '$pprice', '$cat_id', '$imgname')");
@@ -205,7 +205,7 @@ if(isset($_POST['add_product'])){
         }
     } else {
         echo "<script>
-        alert('Image size should be less than or equal to 2MB');
+        alert('Image size should be less than or equal to 10MB');
         location.assign('admin_panel/public.php?add_product');
         </script>";
     }
