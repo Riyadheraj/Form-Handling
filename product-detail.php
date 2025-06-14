@@ -172,7 +172,7 @@ include "header.php";
 
 						<span class="mtext-106 cl2">
 							<?php
-							echo  "$" .$data ['p_price'];
+							echo "$" .$data ['p_price'];
 							?>
 						</span>
 
