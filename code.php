@@ -251,14 +251,14 @@ if(isset($_POST['add_to_cart'])){
     $product_price = $_POST['p_price'];
     $product_qty = $_POST['p_qty'];
 
-    $addtocart = mysqli_query($con, "INSERT INTO add_to_cart(user_id, product_id, product_price, product_qty)VAlUES('$user_id', '$product_id', '$product_price', '$product_qty')");
+    $addtocart = mysqli_query($con, "INSERT INTO add_to_cart(user_id, product_id, product_price, product_qty)VALUES('$user_id', '$product_id', '$product_price', '$product_qty')");
 
     if($addtocart){
         // echo "<script>
         // alert('Your data add in your cart');
-        // </script>';
-        header("Location:product-detail.php?id=.$product_id");
-    }
+        // </script>";
+        header("Location:product-detail.php?id=". $product_id);
+    }   
 
 }
 
