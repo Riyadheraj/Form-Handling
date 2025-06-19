@@ -142,7 +142,7 @@ include "header.php";
 									<td class="column-2">Fresh Strawberries</td>
 									<td class="column-3">$ 36.00</td>
 									<td class="column-4">
-										<div class="wrap-num-product flex-w m-l-auto m-r-0">
+										<!-- <div class="wrap-num-product flex-w m-l-auto m-r-0">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
@@ -152,9 +152,16 @@ include "header.php";
 											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
-										</div>
+										</div> -->
+										<?php echo $value['product_price']?>
 									</td>
-									<td class="column-5">$ 36.00</td>
+									<td class="column-5">
+										<?php
+										$_SESSION['total_amount'] = $value['product_price']* $value['product_qty'];
+
+										echo "$" . $_SESSION['total_amount'];
+										?>
+									</td>
 								</tr>
 
 								<tr class="table_row">
