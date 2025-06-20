@@ -525,7 +525,7 @@ include "header.php";
 				?>
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 					<!-- Block2 -->
-					<div class="block2">
+					<!-- <div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="images/product-02.jpg" alt="IMG-PRODUCT">
 
@@ -552,7 +552,7 @@ include "header.php";
 								</a>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 
 	

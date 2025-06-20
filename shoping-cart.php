@@ -167,11 +167,11 @@ include "header.php";
 								<tr class="table_row">
 									<td class="column-1">
 										<div class="how-itemcart1">
-											<img src="images/item-cart-05.jpg" alt="IMG">
+											<img src="images/<?php echo $value['p_image'];?>" alt="IMG">
 										</div>
 									</td>
-									<td class="column-2">Lightweight Jacket</td>
-									<td class="column-3">$ 16.00</td>
+									<td class="column-2"><?php echo $value['p_name'];?></td>
+									<td class="column-3"><?php echo $value['p_name'];?></td>
 									<td class="column-4">
 										<div class="wrap-num-product flex-w m-l-auto m-r-0">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
