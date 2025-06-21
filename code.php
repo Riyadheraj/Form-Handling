@@ -262,5 +262,26 @@ if(isset($_POST['add_to_cart'])){
 
 }
 
+// Order
+
+if(isset($_POST['orders'])){
+    $user_id = $_SESSION['user_id'];
+    $total_amount = $_SESSION['g_total'];
+
+    $query = mysqli_query($con, "SELECT * FROM add_to_cart WHERE user_id = '$user_id'");
+
+    foreach($query as $data){
+        $orders = mysqli_query($con, "INSERT INTO orders(user_id, product_id, product_price, product_qty, total_amount)VALUES('$user_id', '".$data['product_id']."', '".$data['product_price']."', '".$data['product_qty']."', 'total_amount')");
+        
+        if($orders){
+            echo "<script>
+            alert('Your order has been placed! Thank you');
+            location.assign('shoping-cart.php');
+            </script>";
+        }
+    }
+    $deleteData = mysqli_query($con, "DELETE FROM add_to_cart WHERE user_id = '$user_id'");
+}
+
 
 ?>

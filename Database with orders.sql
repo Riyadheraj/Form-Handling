@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2025 at 02:30 PM
+-- Generation Time: Jun 21, 2025 at 07:32 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -107,10 +107,35 @@ CREATE TABLE `add_to_cart` (
 INSERT INTO `add_to_cart` (`cart_id`, `user_id`, `product_id`, `product_price`, `product_qty`) VALUES
 (1, 2, 20, 2000, 5),
 (2, 2, 17, 4500, 10),
-(3, 3, 15, 1500, 6),
-(4, 3, 14, 850, 4),
 (5, 2, 19, 2200, 5),
-(6, 2, 2, 6000, 10);
+(6, 2, 2, 6000, 10),
+(7, 2, 7, 2540, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `product_price` int(11) DEFAULT NULL,
+  `product_qty` int(11) DEFAULT NULL,
+  `total_amount` int(11) DEFAULT NULL,
+  `date_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `user_id`, `product_id`, `product_price`, `product_qty`, `total_amount`, `date_time`) VALUES
+(1, 3, 15, 1500, 6, 0, '2025-06-21 05:29:28'),
+(2, 3, 14, 850, 4, 0, '2025-06-21 05:29:28'),
+(3, 3, 16, 2800, 2, 0, '2025-06-21 05:29:28'),
+(4, 3, 17, 4500, 2, 0, '2025-06-21 05:29:28');
 
 -- --------------------------------------------------------
 
@@ -168,6 +193,14 @@ ALTER TABLE `add_to_cart`
   ADD KEY `product_id` (`product_id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
 -- Indexes for table `registration_form`
 --
 ALTER TABLE `registration_form`
@@ -195,7 +228,13 @@ ALTER TABLE `add_product`
 -- AUTO_INCREMENT for table `add_to_cart`
 --
 ALTER TABLE `add_to_cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `registration_form`
@@ -219,6 +258,13 @@ ALTER TABLE `add_product`
 ALTER TABLE `add_to_cart`
   ADD CONSTRAINT `add_to_cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `registration_form` (`Id`),
   ADD CONSTRAINT `add_to_cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `add_product` (`p_id`);
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `registration_form` (`Id`),
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `add_product` (`p_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
