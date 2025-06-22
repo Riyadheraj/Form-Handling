@@ -153,9 +153,9 @@ include "header.php";
 									</td>
 								</tr>
 
-														<?php
+					<?php
 									}
-	}
+								}
 	?>
 							</table>
 

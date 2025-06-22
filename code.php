@@ -271,7 +271,7 @@ if(isset($_POST['orders'])){
     $query = mysqli_query($con, "SELECT * FROM add_to_cart WHERE user_id = '$user_id'");
 
     foreach($query as $data){
-        $orders = mysqli_query($con, "INSERT INTO orders(user_id, product_id, product_price, product_qty, total_amount)VALUES('$user_id', '".$data['product_id']."', '".$data['product_price']."', '".$data['product_qty']."', 'total_amount')");
+        $orders = mysqli_query($con, "INSERT INTO orders(user_id, product_id, product_price, product_qty, total_amount)VALUES('$user_id', '".$data['product_id']."', '".$data['product_price']."', '".$data['product_qty']."', '$total_amount')");
         
         if($orders){
             echo "<script>
