@@ -29,13 +29,14 @@
     <th>Status</th>
     <th colspan="2" class="text-center">Action</th>
 
+     <tbody id="mytable">
   <?php
   include "../connection.php";
 
  $query  = mysqli_query($con, "SELECT * FROM registration_form");
  foreach($query as $value){
   ?>
-  <tbody id="mytable">
+ 
                 
      <tr>
      <td><?php echo $value['Id'];?></td>
