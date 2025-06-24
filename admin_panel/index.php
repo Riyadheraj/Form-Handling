@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Index Page</title>
+    <script src="js\jquery-3.7.1.min.js"></script>
   </head>
   <body>
     <h1 class="text-center mt-3">User's Data</h1>
@@ -17,6 +18,8 @@
   <div class="row">
     <div class="col-8 mx-auto">
     <button class="btn btn-danger"><a href= "../form.php" style = "color:white; text-decoration:none;" >Add User</a></button>
+
+    <input type="text" class="form-control mt-3" placeholder="Search Here..." id="searchinput">
     <table class="table-bordered table-striped table-hover mt-3 table" border= "2">
     <tr>
     <th>Id</th>
@@ -32,6 +35,7 @@
  $query  = mysqli_query($con, "SELECT * FROM registration_form");
  foreach($query as $value){
   ?>
+  <tbody id="mytable">
                 
      <tr>
      <td><?php echo $value['Id'];?></td>
@@ -103,10 +107,32 @@
 }
 ?>
 </tr>
+</tbody>
 </table>
 </div>
 </div>
 </div>
+
+<script>
+
+$(document).ready(function(){
+  // alert("Hello");
+  $("#searchinput").keyup(function(){
+    let search = $(this).val();
+    // alert(search);
+    $.ajax({
+      url : "search.php",
+      type : "POST",
+      data : {student_name : search},
+      success : function(mydata){
+        $("#mytable").html(mydata)
+      }
+    })
+
+  })
+})
+  </script>
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 
